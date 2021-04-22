@@ -1,0 +1,69 @@
+<app-sidebar></app-sidebar>
+<section id="contact-form">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <div class="title-area text-dark">
+                    <h1 class="font-primary">Agregar Documento</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-8 offset-lg-2">
+                <div class="form-area p-lg-4 p-3">
+                    <form (ngSubmit)="onCreate()" novalidate #f="ngForm" autocomplete="off">
+                        <div class="row space">
+                            <div class="col-md-12">
+                                <div class="form-group first">
+                                    <input type="text" id="codigoDoc" name="codigoDoc" [(ngModel)]="codigoDoc" required>
+                                    <label class="lbl-nombre">
+                                        <span class="text-nomb">Código:</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row space">
+                            <div class="col-md-12">
+                                <div class="form-group first">
+                                    <input type="text" id="descripcion" name="descripcion" [(ngModel)]="descripcion"
+                                        required>
+                                    <label class="lbl-nombre">
+                                        <span class="text-nomb">Descripción:</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row space">
+                            <div class="col-md-6">
+                                <label>
+                                    <span class="text-nomb">Tipo de Documento:</span>
+                                </label>
+                            </div>
+                            <div class="col-md-6 content-select">
+                                <select name="tipoDocumento" [(ngModel)]="seleccionado">
+                                    <option value='0'  disabled>Escoga un tipo...</option>
+                                    <option [ngValue]="tipodocumento.id" *ngFor="let tipodocumento of tipodocumentos">
+                                        {{tipodocumento.descripcion}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row space">
+                            <div class="col-md-8">
+                                <input type="file" accept="image/*" (change)="fileChangeEvent($event)" multiple>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-danger text-light btn-customizer"
+                                    [routerLink]="['/documentos/listar']"><i
+                                        class="fas fa-arrow-alt-circle-left"></i>Cancelar</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-success text-light btn-customizer" [disabled]="!f.valid"><i
+                                        class="fas fa-save"></i>Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
